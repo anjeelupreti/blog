@@ -208,7 +208,9 @@ main .time{
                 <br>
                     
                     <article>
+                        {% if blog.image %}
                         {{ blog.image.url }}
+                        {% endif %}
                         {{ blog.content  | linebreaks}}
                     </article>
                     

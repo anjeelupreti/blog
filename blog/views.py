@@ -3,22 +3,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Blog
 from blog.form import AddBlogForm, EditBlogForm
+from django.http import HttpResponse
 
 @login_required
 def add_blog(request):
-    form = AddBlogForm()
-    if request.method == "POST":
-        form = AddBlogForm(request.POST, request.FILES or None)
+    if request.method == 'POST':
+        form = AddBlogForm(request.POST, request.FILES)
         if form.is_valid():
-            blog = form.save(commit=False)
-            blog.author = request.user  # Assuming Blog model has an author field
-            blog.save()
-            messages.success(request, 'Blog post added successfully.')
+            new_blog = form.save(commit=False)
+            new_blog.author = request.user  
+           
+            new_blog.save()
             return redirect('/blog/')
-        else:
-            messages.error(request, 'There was an error adding the blog post.')
-    context = {"data": "this is blog add form", "form": form}
-    return render(request, 'blog/add.html', context)
+    else:
+        form = AddBlogForm()
+    
+    return render(request, 'blog/add.html', {'form': form})
 
 @login_required
 def list_blog(request):
@@ -34,37 +34,34 @@ def view_blog(request, title):
     }
     return render(request, "blog/view.html", context)
 
+
+
 @login_required
 def edit_blog(request, title):
-    blog_data = get_object_or_404(Blog, title=title)
-    if blog_data.author != request.user:
-        messages.error(request, 'You do not have permission to edit this blog post.')
-        return redirect('/blog/')  # Or some kind of "permission denied" response
-
-    if request.method == 'POST':
-        form = EditBlogForm(request.POST, request.FILES or None, instance=blog_data)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Blog post updated successfully.')
-            return redirect('/blog/')
+    blog = get_object_or_404(Blog, title=title)
+    if request.user == blog.author:
+        if request.method == 'POST':
+            form = EditBlogForm(request.POST, request.FILES, instance=blog)
+            if form.is_valid():
+                form.save()
+                return redirect('view_blog', title=blog.title)
         else:
-            messages.error(request, 'There was an error updating the blog post.')
+            form = EditBlogForm(instance=blog) 
+        return render(request, 'blog/edit.html', {'form': form})
     else:
-        form = EditBlogForm(instance=blog_data)
-
-    context = {
-        "data": blog_data,
-        "form": form
-    }
-    return render(request, 'blog/edit.html', context)
+        return HttpResponse("You do not have permission to edit this blog.")
 
 @login_required
-def delete_blog(request, title):
-    blog_data = get_object_or_404(Blog, title=title)
-    if blog_data.author != request.user:
-        messages.error(request, 'You do not have permission to delete this blog post.')
-        return redirect('/blog/') 
-
-    blog_data.delete()
-    messages.success(request, 'Blog post deleted successfully.')
-    return redirect('/blog/')
+def delete_blog(request,title):
+    blog = get_object_or_404(Blog, title=title)
+    
+    if request.user == blog.author:
+        if request.method == 'POST':
+            blog.delete()
+            messages.success(request, 'Blog post deleted successfully.')
+            return redirect('list_blog')
+        else:
+            return render(request, 'blog/home.html', {'blog': blog})
+    else:
+        messages.error(request, 'You are not authorized to delete this blog post.')
+        return redirect('list_blog')

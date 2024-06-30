@@ -6,274 +6,203 @@
     <title>Broadway Blog</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
     <style>
+        * {
+            font-family: "Audiowide", sans-serif;
+            color: black;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background-color: whitesmoke;
+            font-family: "Audiowide", sans-serif;
+            margin: 0;
+        }
 
-*{
-    font-family: "Audiowide", sans-serif;
-    color:black
-}
-body {
-    background-color: whitesmoke;
-    font-family: "Audiowide", sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1em;
+            background-color: rgb(255, 166, 0);
+            border-bottom: 1px solid black;
+        }
 
+        header h1,
+        header h2 {
+            margin: 0;
+        }
 
+        header .buttons {
+            display: flex;
+            align-items: center;
+        }
 
-h1 {
-    margin: 0;
-    font-family: "Audiowide", sans-serif;
-}
+        .buttons .add-btn,
+        .buttons .edit-btn,
+        .buttons .delete-btn,
+        .buttons .login-btn,
+        .buttons .logout-btn {
+            background-color: whitesmoke;
+            color: black;
+            border: 1px solid rgb(255, 166, 0);
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.5em 1em;
+            margin-left: 1em;
+            transition: background-color 0.3s ease;
+        }
 
-.container {
-    display: flex;
-}
+        .buttons .add-btn:hover,
+        .buttons .edit-btn:hover,
+        .buttons .delete-btn:hover,
+        .buttons .login-btn:hover,
+        .buttons .logout-btn:hover {
+            background-color: rgb(255, 166, 0);
+            color: white;
+        }
 
-aside {
-    width: 18%;
-    padding: 1em;
-    height:100vh;
-    background-color:rgb(255, 166, 0);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-}
+        .anchor {
+            text-decoration: none;
+            color: black;
+        }
 
-aside h2 {
-    font-size: 1.5em;
-    border-bottom: 2px solid rgb(255, 166, 0);
-    padding-bottom: 0.5em;
-}
+        .container {
+            display: flex;
+            min-height: 100vh; /* Ensures the container takes up at least the height of the viewport */
+        }
 
-aside ul {
-    list-style-type: none;
-    padding: 0;
-}
+        aside {
+            width: 20%; /* Sidebar width */
+            padding: 1em;
+            background-color: #000000;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+            border-right: 1px solid rgb(255, 166, 0);
+        }
 
-aside ul li {
-    margin: 1em 0;
-}
+        aside h2 {
+            font-size: 1.5em;
+            border-bottom: 2px solid rgb(255, 166, 0);
+            padding-bottom: 0.5em;
+            color:rgb(255, 166, 0);
+        }
 
-aside ul li a {
-    text-decoration: none;
-}
+        aside ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-aside ul li a:hover {
-    text-decoration: underline;
-}
+        aside ul li {
+            margin: 1em 0;
+        }
 
-main {
-    width: 80%;
-    padding: 2em;
-}
+        aside ul li a {
+            color: rgb(255, 166, 0);
+            text-decoration: none;
+        }
 
-article {
-    margin-bottom: 2em;
-}
+        aside ul li a:hover {
+            text-decoration: underline;
+        }
 
-article h2 {
-    border-bottom: 2px solid rgb(255, 166, 0)
-    padding-bottom: 0.5em;
-}
+        main {
+            flex: 1; /* Takes up remaining space */
+            padding: 2em;
+            overflow-y: auto; /* Enable scrolling if content exceeds viewport */
+        }
 
- 
+        top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+        }
 
-header {
-    display:flex;
-    justify-content:space-between;
-    padding: 1em;
-    background-color: rgb(255, 166, 0);
-    border-bottom:1px solid black;
-}
-h1{
-   
-   margin: 0;
-   font-family: "Audiowide", sans-serif;
-   color: black;
-}
+        .title {
+            font-size: 30px;
+            padding-bottom: 0.5em;
+        }
 
-header h2{
-   
-    margin: 0;
-    font-family: "Audiowide", sans-serif;
-    color: black;
-}
+        .author {
+            font-size: 12px;
+            color: gray;
+        }
 
-h2{
-    margin: 0;
-    font-family: "Audiowide", sans-serif;
-    color:rgb(255, 166, 0);
-}
+        hr {
+            border: 1px solid rgb(255, 166, 0);
+            margin: 2em 0;
+        }
 
-.add-btn,.edit-btn,.delete-btn {
-    background-color:whitesmoke;
-    color:black;
-    border: 1px solid rgb(255, 166, 0);
-    font-size: 1em;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    margin-top:2em;
-}
-
-.anchor{
-    text-decoration: none;
-    color:black;
-}
-
-.container {
-    display: flex;
-}
-
-aside {
-    width: 20%;
-    padding: 1em;
-    background-color: #000000;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    border-right:1px solid rgb(255, 166, 0);
-    
-    
-}
-
-
-aside h2 {
-    font-size: 1.5em;
-    border-bottom: 2px solid rgb(255, 166, 0);;
-    padding-bottom: 0.5em;
-}
-
-aside ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-aside ul li {
-    margin: 1em 0;
-}
-
-aside ul li a {
-    color: rgb(255, 166, 0);
-    text-decoration: none;
-}
-
-aside ul li a:hover {
-    text-decoration: underline;
-}
-
-main {
-    width: 80%;
-    padding: 2em;
-
-}
-
-top{
-    display:flex;
-    justify-content: space-between;
-}
-
-article {
-    margin-top:2em;
-    margin-bottom: 2em;
-}
-
- main .title {
-    
-    padding-bottom: 1.0em;
-    font-size:30px;
-}
-
-main  .author {
-    font-size:10px;
-    padding-bottom: 0.5em;
-}
-
-b{
-    font-size:12px;
-    padding-bottom: 5em;
-
-}
-
-hr{
-    border:1px solid rgb(255, 166, 0);
-}
-
-
-.container aside ul li {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.container aside ul li button{
-    background-color:black;
-    color:whitesmoke;
-    border: 1px solid rgb(255, 166, 0);
-    font-size: 1em;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-    margin-top:2em;
-}
-.container aside ul li a{
-    color:rgb(255, 166, 0);
-    text-decoration:none;
-
-
-}
+        .container aside ul li {
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
-
 </head>
 <body>
     <header>
-        <left>
-            <h1>Broadway </h1>
-                <h1>Blog</h1>
-        </left>
-        <right>
+        <div>
+            <h1>Broadway Blog</h1>
+        </div>
+        <div class="buttons">
             {% if user.is_authenticated %}
                 <h2>Hello {{ user.username }}!</h2>
-                <button class="add-btn"><a href="{% url 'add_blog' %}" class='anchor'>Add Blog</a></button>
+                <button class="add-btn"><a href="{% url 'add_blog' %}" class="anchor">Add Blog</a></button>
                 <form action="{% url 'logout_user' %}" method="post" style="display: inline;">
                     {% csrf_token %}
                     <button type="submit" class="logout-btn">Logout</button>
                 </form>
-                
             {% else %}
                 <a href="{% url 'login_user' %}" class="login-btn">Login</a>
             {% endif %}
-        </right>
+        </div>
     </header>
     
     <div class="container">
         <aside>
-            
-            <h2 >Contents</h2> 
-            
-            
+            <h2>My Blogs</h2>
             <ul>
                 {% for blog in data %}
-                <li><a href="{% url 'view_blog' blog.title %}">{{ blog.title }}</a><button class="edit-btn"><a class='anchor' href="{% url 'edit_blog' blog.title %}"">Edit</a></button></li>
+                    {% if blog.author == request.user %}
+                        <li>
+                            <form action="{% url 'delete_blog' blog.title %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="anchor" style="background: none; border: none; color: rgb(255, 166, 0);">{{ blog.title }}</button>
+                            </form>
+                        </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
         </aside>
+        
         <main>
             {% for blog in data %}
-            <top>
-                <left>
-                <b class="title">{{ blog.title }}</b>&nbsp&nbsp&nbsp&nbsp&nbsp<b class="author">{{ blog.author }}</b>
-                </left>
-                <right>
-                    <b>{{blog.update_date | timesince }} ago</b><br>
-                    <button class="edit-btn"><a class='anchor' href="{% url 'edit_blog' blog.title %}"">Edit</a></button> |
-                    <button class="delete-btn"><a class='anchor' href="{% url 'delete_blog' blog.title %}">Delete</a></button>
-                </right>
-            </top>
-                
-                <article>
-                    <img src="{{ blog.image.url}}" height="100px" width="400px"><br>
-
-                    {{ blog.content  | linebreaks}}
-                </article>
-                <hr>
+                <div class="post">
+                    <top>
+                        <div>
+                            <b class="title">{{ blog.title }}</b><br>
+                            <span class="author">by {{ blog.author }}</span>
+                        </div>
+                        <div>
+                            <span>{{ blog.update_date | timesince }} ago</span><br>
+                            <button class="edit-btn"><a class="anchor" href="{% url 'edit_blog' blog.title %}">Edit</a></button> |
+                            <form action="{% url 'delete_blog' blog.title %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="delete-btn anchor" style="background: none; border: none; color: rgb(255, 166, 0);">Delete</button>
+                            </form>
+                        </div>
+                    </top>
+                    
+                    <article>
+                        {% if blog.image %}
+                            <img src="{{ blog.image.url }}" height="100px" width="400px"><br>
+                        {% endif %}
+                        {{ blog.content | linebreaks }}
+                    </article>
+                    <hr>
+                </div>
             {% endfor %}
         </main>
     </div>

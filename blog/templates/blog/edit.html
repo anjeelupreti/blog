@@ -212,17 +212,17 @@ color:black
         <main>
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{form}}
+            {% for field in form %}
+            <br>
+            {{ field.label}}
+            <br>
+            {{field}}
+            <br>
+            {% endfor %}
             <br>
             <hr>
             <button type="submit" class="submit-btn">submit</button>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                    <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
+            
 
           </form>
         </main>

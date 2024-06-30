@@ -16,6 +16,6 @@ urlpatterns = [
     path('add/',add_blog,name='add_blog'),
     path('view/<title>',view_blog,name='view_blog'),
     path('edit/<title>',edit_blog,name='edit_blog'),
-    path('delete/<title>',delete_blog,name='delete_blog'),
+    path('delete/<str:title>',delete_blog,name='delete_blog'),
 ]
 
