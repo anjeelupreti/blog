@@ -225,13 +225,24 @@ hr{
 <body>
     <header>
         <left>
-        <h1>Broadway Blog</h1>
+            <h1>Broadway </h1>
+                <h1>Blog</h1>
         </left>
         <right>
-            <h2>Hello {{ user.username }} !</h2>
-        <button class="add-btn"><a href ="{% url 'add_blog' %}" class='anchor'>Add Blog</a></button> 
+            {% if user.is_authenticated %}
+                <h2>Hello {{ user.username }}!</h2>
+                <button class="add-btn"><a href="{% url 'add_blog' %}" class='anchor'>Add Blog</a></button>
+                <form action="{% url 'logout_user' %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-btn">Logout</button>
+                </form>
+                
+            {% else %}
+                <a href="{% url 'login_user' %}" class="login-btn">Login</a>
+            {% endif %}
         </right>
     </header>
+    
     <div class="container">
         <aside>
             
