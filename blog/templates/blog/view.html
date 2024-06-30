@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadway Blog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+    <style>
+
+
+*{
+    font-family: "Audiowide", sans-serif;
+    color:black
+}
+body {
+    background-color: whitesmoke;
+    font-family: "Audiowide", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    padding: 1em;
+    background-color:rgb(255, 166, 0);
+}
+
+h1 {
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+}
+
+ 
+
+aside {
+    width: 18%;
+    padding: 1em;
+    height:100vh;
+    background-color: rgb(255, 166, 0);
+    box-shadow: 2px 0 5px rgb(255, 166, 0);
+}
+
+aside h2 {
+    font-size: 1.5em;
+    border-bottom: 2px solid ;
+    padding-bottom: 0.5em;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 1em 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    width: 80%;
+    padding: 2em;
+}
+
+article {
+    margin-bottom: 2em;
+}
+
+article h2 {
+    border-bottom: 2px solid rgb(3, 192, 3);
+    padding-bottom: 0.5em;
+}
+
+ 
+
+header {
+    display:flex;
+    justify-content:space-between;
+    padding: 1em;
+    background-color: rgb(255, 166, 0);
+    border-bottom:1px solid rgb(255, 166, 0);
+}
+
+hr{
+    border:1px solid rgb(255, 166, 0);
+}
+
+h1 {
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+    font-weight:bolder;
+    color: black;
+    font-size:40px;
+}
+
+.add-btn {
+    background-color: whitesmoke;
+    color:black;
+    border: 1px solid black;
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.anchor{
+    text-decoration: none;
+    color:black
+}
+
+
+
+aside {
+    width: 20%;
+    padding: 1em;
+    background-color: rgb(255, 166, 0);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    border-right:1px solid whitesmoke
+}
+
+aside h2 {
+    font-size: 1.5em;
+    border-bottom: 2px solid rgb(255, 166, 0);
+    padding-bottom: 0.5em;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 1em 0;
+}
+
+aside ul li a {
+    color: black;
+    text-decoration: none;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    width: 100%;
+    padding: 2em;
+}
+
+article {
+    margin-bottom: 2em;
+    margin:2em;
+}
+
+top{
+    display:flex;
+    justify-content: space-between;
+}
+
+main .title {
+    
+    padding-bottom: 12em;
+    font-size:30px;
+}
+
+main  .author {
+    font-size:10px;
+    padding-bottom: 5em;
+}
+
+main .time{
+    font-size:12px;
+    padding:2em;
+    margin-right:4em;
+
+
+}
+
+
+    </style>
+
+</head>
+<body>
+
+    <header>
+        <h1>Broadway Blog</h1>
+        <button class="add-btn"><a href ="{% url 'add_blog' %}" class='anchor'>Add Blog</a></button>
+    </header>
+            <div class="'content">
+            <main>
+                <top>
+                    <left>
+                    <b class="title">{{ blog.title }}</b>&nbsp&nbsp&nbsp&nbsp&nbsp<b class="author">{{ blog.author }}</b>
+                    </left>
+                    <right>
+                        <b class="time">{{blog.add_date }}</b><br>
+                        <b class="time">Updated {{blog.update_date | timesince}} ago </b>
+                    </right>
+                </top>
+                <br>
+                <br>
+                <br>
+                    
+                    <article>
+                        {{ blog.image.url }}
+                        {{ blog.content  | linebreaks}}
+                    </article>
+                    
+                </main>
+    </div>
+    </div>
+    <hr>
+</body>
+</html>

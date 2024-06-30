@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadway Blog</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+    <style>
+
+
+*{
+    font-family: "Audiowide", sans-serif;
+    color:black
+}
+body {
+    background-color: whitesmoke;
+    font-family: "Audiowide", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+h1 {
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    width: 18%;
+    padding: 1em;
+    height:100vh;
+    background-color:rgb(255, 166, 0);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+aside h2 {
+    font-size: 1.5em;
+    border-bottom: 2px solid rgb(255, 166, 0);
+    padding-bottom: 0.5em;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 1em 0;
+}
+
+aside ul li a {
+    text-decoration: none;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    width: 80%;
+    padding: 2em;
+}
+
+article {
+    margin-bottom: 2em;
+}
+
+article h2 {
+    border-bottom: 2px solid rgb(255, 166, 0)
+    padding-bottom: 0.5em;
+}
+
+ 
+
+header {
+    display:flex;
+    justify-content:space-between;
+    padding: 1em;
+    background-color: rgb(255, 166, 0);
+    border-bottom:1px solid black;
+}
+
+h1{
+   
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+    color: black;
+}
+
+h2{
+    margin: 0;
+    font-family: "Audiowide", sans-serif;
+    color:rgb(255, 166, 0);
+}
+
+.add-btn,.edit-btn,.delete-btn {
+    background-color:whitesmoke;
+    color:black;
+    border: 1px solid rgb(255, 166, 0);
+    font-size: 1em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+    margin-top:2em;
+}
+
+.anchor{
+    text-decoration: none;
+    color:black;
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    padding: 1em;
+    background-color: #000000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    border-right:1px solid rgb(255, 166, 0);
+}
+
+aside h2 {
+    font-size: 1.5em;
+    border-bottom: 2px solid rgb(255, 166, 0);;
+    padding-bottom: 0.5em;
+}
+
+aside ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin: 1em 0;
+}
+
+aside ul li a {
+    color: rgb(255, 166, 0);
+    text-decoration: none;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    width: 80%;
+    padding: 2em;
+}
+
+top{
+    display:flex;
+    justify-content: space-between;
+}
+
+article {
+    margin-top:2em;
+    margin-bottom: 2em;
+}
+
+ main .title {
+    
+    padding-bottom: 1.0em;
+    font-size:30px;
+}
+
+main  .author {
+    font-size:10px;
+    padding-bottom: 0.5em;
+}
+
+b{
+    font-size:12px;
+    padding-bottom: 5em;
+
+}
+
+hr{
+    border:1px solid rgb(255, 166, 0);
+}
+
+form input[type='text'],form textarea
+{
+width:100%;
+padding:0.5rem;
+margin-bottom:1rem;
+border:2px solid rgb(255, 166, 0);;
+border-radius:4px;
+background-color:whitesmoke
+color:black
+}
+
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Broadway Blog</h1>
+        <button class="add-btn"><a href ="{% url 'add_blog' %}" class='anchor'>Add Blog</a></button>
+    </header>
+    <div class="container">
+        <main>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <br>
+            <hr>
+            <button type="submit" class="submit-btn">submit</button>
+          </form>
+        </main>
+    </div>
+</body>
+</html>
